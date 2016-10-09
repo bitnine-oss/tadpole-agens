@@ -25,11 +25,11 @@
  -->
 <select id="agensVertex" resultClass="com.hangum.tadpole.engine.query.dao.agens.AgensVertexDAO" parameterClass="java.lang.String">
 	select
-	    childlab.labname, childlab.relid, childlab.labowner, childlab.labkind, inhrelid, inhparent, inhseqno
+	    childlab.labname, childlab.relid,/* childlab.labowner, */childlab.labkind, inhrelid, inhparent, inhseqno
 	from 
 	    ag_label AS parentlab, 
 	    ag_label AS childlab, 
-	    ag_inherits AS inh 
+	    pg_inherits AS inh 
 	where 
 	        childlab.oid = inh.inhrelid 
 	    AND parentlab.oid = inh.inhparent
@@ -41,11 +41,11 @@
  -->
 <select id="agensEdge" resultClass="com.hangum.tadpole.engine.query.dao.agens.AgensVertexDAO" parameterClass="java.lang.String">
 	select
-	    childlab.labname, childlab.relid, childlab.labowner, childlab.labkind, inhrelid, inhparent, inhseqno
+	    childlab.labname, childlab.relid, /*childlab.labowner, */childlab.labkind, inhrelid, inhparent, inhseqno
 	from 
 	    ag_label AS parentlab, 
 	    ag_label AS childlab, 
-	    ag_inherits AS inh 
+	    pg_inherits AS inh 
 	where 
 	        childlab.oid = inh.inhrelid 
 	    AND parentlab.oid = inh.inhparent
