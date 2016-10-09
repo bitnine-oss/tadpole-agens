@@ -27,6 +27,7 @@ import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
+import com.bitnine.angens.manager.core.actions.AgensManagerOpenAction;
 import com.hangum.tadpole.application.start.action.AboutAction;
 import com.hangum.tadpole.application.start.action.BillAction;
 import com.hangum.tadpole.application.start.action.BugIssueAction;
@@ -110,7 +111,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     private IAction newVersionCheckAction;
     
     // agens monitor
-//    private IAction agensMonitorAction;
+    private IAction agensMonitorAction;
     
     private IAction billAction;
 
@@ -166,8 +167,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     	register(monitoringRealTimeAction);
     	
     	//
-//    	agensMonitorAction = new AgensManagerOpenAction(window);
-//    	register(agensMonitorAction);
+    	agensMonitorAction = new AgensManagerOpenAction(window);
+    	register(agensMonitorAction);
     	
     	jDBCDriverManagerAction = new JDBCDriverManagerAction(window);
     	register(jDBCDriverManagerAction);
@@ -309,8 +310,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
         if("YES".equals(GetAdminPreference.getSupportMonitoring())) {
         	toolbar.add(monitoringRealTimeAction);
         }
-//        toolbar.add(agensMonitorAction);
-//        toolbar.add(new Separator());
+        toolbar.add(agensMonitorAction);
+        toolbar.add(new Separator());
         
 //        toolbar.add(deleteResourceAction);
 //        toolbar.add(new Separator());
