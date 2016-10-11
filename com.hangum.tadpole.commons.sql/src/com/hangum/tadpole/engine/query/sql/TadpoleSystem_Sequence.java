@@ -26,9 +26,12 @@ public class TadpoleSystem_Sequence {
 	 */
 	public static TadpoleSequenceDAO getSequence(TadpoleSequenceDAO dao) throws TadpoleSQLManagerException, SQLException {
 		SqlMapClient sqlClient = TadpoleSQLManager.getInstance(TadpoleSystemInitializer.getUserDB());
-		dao = (TadpoleSequenceDAO)sqlClient.queryForObject("lastSequene", dao);
-		
-		dao.setNo(dao.getNo()+1);
+		TadpoleSequenceDAO seqDao = (TadpoleSequenceDAO)sqlClient.queryForObject("lastSequene", dao);
+		if(seqDao != null) {
+			dao.setNo(seqDao.getNo()+1);
+		} else {
+			dao.setNo(1);
+		}
 		sqlClient.update("updateSequence", dao);
 		
 		return dao;

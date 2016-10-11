@@ -120,7 +120,7 @@
 	UPDATE 
 		monitoring_main
 	SET 
-		param_1_init_value = #param_1_init_value#, param_2_init_value = #param_2_init_value#, mod_time = now()
+		param_1_init_value = #param_1_init_value#, param_2_init_value = #param_2_init_value#	/*, mod_time = now()*/
 	WHERE
 		seq = #monitoring_seq# 
 </update>
@@ -254,7 +254,7 @@
 	SET 
 		read_method = #read_method#, title = #title#, description = #description#, advice = #advice#, is_result_save = #is_result_save#, is_snapshot_save = #is_snapshot_save#, query = #query#,
 		param_1_column = #param_1_column#, param_1_init_value = #param_1_init_value#, param_2_column = #param_2_column#, param_2_init_value = #param_2_init_value#,
-		receiver = #receiver#, mod_time = now()
+		receiver = #receiver#	/*, mod_time = now()*/
 	WHERE seq = #seq#
 </update>
 
@@ -263,7 +263,7 @@
 	UPDATE monitoring_index 
 	SET 
 		monitoring_type = #monitoring_type#, after_type = #after_type#, kpi_type = #kpi_type#, index_nm = #index_nm#, condition_type = #condition_type#, condition_value = #condition_value#,
-		exception_index_nm = #exception_index_nm#, exception_condition_type = #exception_condition_type#, exception_condition_value = #exception_condition_value#, mod_time = now()
+		exception_index_nm = #exception_index_nm#, exception_condition_type = #exception_condition_type#, exception_condition_value = #exception_condition_value#	/*, mod_time = now()*/
 	WHERE seq = #seq#
 </update>
 
@@ -350,7 +350,7 @@
 	UPDATE
 		monitoring_result
 	SET
-		user_description = #user_description#, is_user_confirm = 'YES', mod_time = now()
+		user_description = #user_description#, is_user_confirm = 'YES'	/*, mod_time = now()*/
 	WHERE
 		seq 	= #seq#
 </update>
@@ -360,7 +360,7 @@
 	UPDATE 
 		monitoring_result 
 	SET
-		user_description = #user_description#, is_user_confirm = 'YES', mod_time = now()
+		user_description = #user_description#, is_user_confirm = 'YES'	/*, mod_time = now()*/
 	WHERE  
 			monitoring_seq 			= #monitoring_seq#
 		AND monitoring_index_seq 	= #monitoring_index_seq#

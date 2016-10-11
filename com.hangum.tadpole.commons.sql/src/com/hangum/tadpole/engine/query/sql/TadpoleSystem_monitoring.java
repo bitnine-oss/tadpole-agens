@@ -165,11 +165,11 @@ public class TadpoleSystem_monitoring {
 		} catch(Exception e) {
 			logger.error("Monitoring result save exception", e);
 		} finally {
-			try {
-				if(sqlClient != null) sqlClient.endTransaction();
-			} catch(Exception e) {
-				logger.error("saveMonitoring Result ", e);
-			}
+//			try {
+//				if(sqlClient != null) sqlClient.endTransaction();
+//			} catch(Exception e) {
+//				logger.error("saveMonitoring Result ", e);
+//			}
 		}
 	}
 	

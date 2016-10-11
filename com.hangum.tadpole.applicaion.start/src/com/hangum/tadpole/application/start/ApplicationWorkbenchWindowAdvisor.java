@@ -46,6 +46,7 @@ import com.hangum.tadpole.engine.query.sql.TadpoleSystem_UserInfoData;
 import com.hangum.tadpole.engine.query.sql.TadpoleSystem_UserQuery;
 import com.hangum.tadpole.engine.utils.HttpSessionCollectorUtil;
 import com.hangum.tadpole.login.core.dialog.LoginDialog;
+import com.hangum.tadpole.monitoring.core.manager.schedule.ScheduleManager;
 import com.hangum.tadpole.preference.get.GetPreferenceGeneral;
 import com.hangum.tadpole.session.manager.SessionManager;
 
@@ -72,7 +73,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 //	    	try {
 	//    		logger.info("Schedule and Summary Report start.........");
 	//			DBSummaryReporter.executer();
-//	    		ScheduleManager.getInstance();
+	    		ScheduleManager.getInstance();
 //			} catch(Exception e) {
 //				logger.error("Schedule", e);
 //			}
