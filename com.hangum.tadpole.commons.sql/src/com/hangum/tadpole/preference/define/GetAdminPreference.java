@@ -166,7 +166,7 @@ public class GetAdminPreference extends AbstractPreference {
 	 * get smtp
 	 * @return
 	 */
-	private static SMTPDTO getSMTPINFO() {
+	public static SMTPDTO getSMTPINFO() {
 		SMTPDTO dto = new SMTPDTO();
 		
 		try {

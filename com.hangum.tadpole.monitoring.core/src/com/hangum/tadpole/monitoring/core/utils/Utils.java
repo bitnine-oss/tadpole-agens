@@ -140,6 +140,28 @@ public class Utils {
 			throw e;
 		}
 	}
+	
+	/**
+	 * 
+	 * @param receivers
+	 * @param title
+	 * @param strContent
+	 * @throws Exception
+	 */
+	public static void getDBTosendEmail(String receivers, String title, String strContent) throws Exception {
+		try {
+			EmailDTO emailDao = new EmailDTO();
+			emailDao.setSubject(title + " waraing message.");
+			emailDao.setContent(strContent);
+			emailDao.setTo(receivers);
+			
+			SendEmails sendEmail = new SendEmails(GetAdminPreference.getSMTPINFO());
+			sendEmail.sendMail(emailDao);
+		} catch(Exception e) {
+			logger.error("Error send email", e);
+			throw e;
+		}
+	}
 
 	/**
 	 * show cron expression

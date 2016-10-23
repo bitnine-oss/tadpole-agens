@@ -1,6 +1,5 @@
 package com.hangum.tadpole.monitoring.core.manager.event;
 
-import java.io.FileWriter;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -94,21 +93,21 @@ public class EventManager {
 	 * 
 	 * @param resultDao
 	 */
-	private void sendEmail(MonitoringResultDAO resultDao) {
-		if(logger.isDebugEnabled()) logger.debug(resultDao.getQuery_result());
-		try {
-			String strMailTitle = resultDao.getUserDB().getDisplay_name() + " - " + resultDao.getMonitoringIndexDAO().getTitle();
-			String strMailContent = strMailTitle + "\n" + resultDao.getSystem_description() + "\n" + resultDao.getQuery_result();
+	private void sendEmail(final MonitoringResultDAO resultDao) {
+		if(logger.isDebugEnabled()) logger.debug("Sending Email : " + resultDao.getQuery_result());
 
-			// TODO 이메일 보내기를 막아놓고 임시조취 
-			//			Utils.sendEmail(resultDao.getMonitoringIndexDAO().getReceiver(), strMailTitle, strMailContent);
-			FileWriter fw = new FileWriter("/Users/hangum/Downloads/mail.txt", true);
-			fw.write(strMailTitle); 
-			fw.flush();
-			fw.close();
+		final String strMailTitle = resultDao.getUserDB().getDisplay_name() + " - " + resultDao.getMonitoringIndexDAO().getTitle();
+		final String strMailContent = strMailTitle + "\n" + resultDao.getSystem_description() + "\n" + resultDao.getQuery_result();
+
+		// TODO 이메일 보내기를 막아놓고 임시조취
+		try {
+			Utils.getDBTosendEmail(resultDao.getMonitoringIndexDAO().getReceiver(), strMailTitle, strMailContent);
+//					FileWriter fw = new FileWriter("/Users/hangum/Downloads/mail.txt", true);
+//					fw.write(strMailTitle); 
+//					fw.flush();
+//					fw.close();
 		} catch (Exception e) {
 			logger.error("Mail send", e);
 		}
 	}
-
 }
