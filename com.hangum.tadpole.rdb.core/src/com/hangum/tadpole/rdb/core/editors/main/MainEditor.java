@@ -84,6 +84,8 @@ import com.hangum.tadpole.rdb.core.viewers.object.sub.utils.TadpoleObjectQuery;
 import com.hangum.tadpole.session.manager.SessionManager;
 import com.hangum.tadpole.sql.format.SQLFormater;
 import com.swtdesigner.ResourceManager;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Button;
 
 /**
  * 쿼리 수행 및 검색 창.
@@ -438,6 +440,7 @@ public class MainEditor extends EditorExtension {
 		
 	    ////// orion editor start /////////////////////////////////////////////////////////////////////////////
 	    browserQueryEditor = new Browser(compositeEditor, SWT.BORDER);
+	    new Label(compositeEditor, SWT.NONE);
 	    browserQueryEditor.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 	    addBrowserService();
 	    
@@ -468,53 +471,75 @@ public class MainEditor extends EditorExtension {
 				gl_compositeExt.marginHeight = 0;
 				gl_compositeExt.marginWidth = 0;
 				compExt.setLayout(gl_compositeExt);
+				
+				Composite composite = new Composite(compExt, SWT.NONE);
+				composite.setLayout(new GridLayout(1, false));
+				composite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+				
+				final Button btnShow = new Button(composite, SWT.NONE);
+				btnShow.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						sashFormExtension.setWeights(new int[] {100, 0});
+					}
+				});
+				btnShow.setText("Editor");
+				
+				ToolItem tltmExtension = new ToolItem(toolBar, SWT.NONE);
+				tltmExtension.setImage(ResourceManager.getPluginImage(Activator.PLUGIN_ID, "resources/icons/editor/layouts_split_vertical.png")); //$NON-NLS-1$
+				tltmExtension.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						sashFormExtension.setWeights(new int[] {0, 100});
+					}
+				});
 	
 				aMainEditorExtension.createPartControl(compExt, this);
 			}
 		}
 		
 		if(intSashCnt >= 2) {
-			sashFormExtension.setWeights(new int[] {100, 0});
+			sashFormExtension.setWeights(new int[] {100, 50});
 		}
 		// 올챙이 확장에 관한 코드를 넣습니다. ===================================================================
 		
 		// autocommit true 혹은 false값이 바뀌었을때..
-		PlatformUI.getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent event) {
-
-				if (event.getProperty() == PublicTadpoleDefine.AUTOCOMMIT_USE) {
-					String strAutoCommit_seq = event.getNewValue().toString();
-					// UserDB.seq || auto commit ture or false 
-					String[] arryVal = StringUtils.split(strAutoCommit_seq, "||"); //$NON-NLS-1$
-					int seq = Integer.parseInt(arryVal[0]);
-					boolean boolUseAutocommit = Boolean.parseBoolean(arryVal[1]);
-
-					if(!tiAutoCommit.isDisposed()) {
-						if(seq == userDB.getSeq()) {
-							tiAutoCommit.setSelection(boolUseAutocommit);
-							if(!boolUseAutocommit) {
-								tiAutoCommitCommit.setEnabled(false);
-								tiAutoCommitRollback.setEnabled(false);
-							} else {
-								tiAutoCommitCommit.setEnabled(true);
-								tiAutoCommitRollback.setEnabled(true);
-							}
-						}	// end tltmAutoCommit
-					}	// end seq
-				} else if(event.getProperty() == PreferenceDefine.EDITOR_CHANGE_EVENT) {
-					final String varTheme 		= PublicTadpoleDefine.getMapTheme().get(GetPreferenceGeneral.getEditorTheme());
-				    final String varFontSize 	= GetPreferenceGeneral.getEditorFontSize();
-				    final String varIsWrap 		= ""+GetPreferenceGeneral.getEditorIsWarp();
-				    final String varWarpLimit 	= GetPreferenceGeneral.getEditorWarpLimitValue();
-				    final String varIsShowGutter = ""+GetPreferenceGeneral.getEditorShowGutter();
-				    
-				    browserEvaluate(IEditorFunction.CHANGE_EDITOR_STYLE, 
-							varTheme, varFontSize, varIsWrap, varWarpLimit, varIsShowGutter
-						);
-				}
-			} //
-		}); // end property change
+//		PlatformUI.getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
+//			@Override
+//			public void propertyChange(PropertyChangeEvent event) {
+//
+//				if (event.getProperty() == PublicTadpoleDefine.AUTOCOMMIT_USE) {
+//					String strAutoCommit_seq = event.getNewValue().toString();
+//					// UserDB.seq || auto commit ture or false 
+//					String[] arryVal = StringUtils.split(strAutoCommit_seq, "||"); //$NON-NLS-1$
+//					int seq = Integer.parseInt(arryVal[0]);
+//					boolean boolUseAutocommit = Boolean.parseBoolean(arryVal[1]);
+//
+//					if(!tiAutoCommit.isDisposed()) {
+//						if(seq == userDB.getSeq()) {
+//							tiAutoCommit.setSelection(boolUseAutocommit);
+//							if(!boolUseAutocommit) {
+//								tiAutoCommitCommit.setEnabled(false);
+//								tiAutoCommitRollback.setEnabled(false);
+//							} else {
+//								tiAutoCommitCommit.setEnabled(true);
+//								tiAutoCommitRollback.setEnabled(true);
+//							}
+//						}	// end tltmAutoCommit
+//					}	// end seq
+//				} else if(event.getProperty() == PreferenceDefine.EDITOR_CHANGE_EVENT) {
+//					final String varTheme 		= PublicTadpoleDefine.getMapTheme().get(GetPreferenceGeneral.getEditorTheme());
+//				    final String varFontSize 	= GetPreferenceGeneral.getEditorFontSize();
+//				    final String varIsWrap 		= ""+GetPreferenceGeneral.getEditorIsWarp();
+//				    final String varWarpLimit 	= GetPreferenceGeneral.getEditorWarpLimitValue();
+//				    final String varIsShowGutter = ""+GetPreferenceGeneral.getEditorShowGutter();
+//				    
+//				    browserEvaluate(IEditorFunction.CHANGE_EDITOR_STYLE, 
+//							varTheme, varFontSize, varIsWrap, varWarpLimit, varIsShowGutter
+//						);
+//				}
+//			} //
+//		}); // end property change
 	
 	}
 	
