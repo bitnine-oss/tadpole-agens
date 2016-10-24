@@ -36,8 +36,6 @@ import com.hangum.tadpole.engine.query.dao.system.UserDBDAO;
 import com.hangum.tadpole.engine.query.dao.system.UserInfoDataDAO;
 import com.hangum.tadpole.engine.query.sql.TadpoleSystem_UserInfoData;
 
-import oracle.net.aso.s;
-
 /**
  * tadpole의 session manager입니다
  * 
