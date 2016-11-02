@@ -48,7 +48,7 @@ public class BasicTDBSQLParser implements TDBSQLParser {
 	private static final String CUBRID_PATTERN_STATEMENT = "";
 
 	/** agens graph statement */
-	private static final String AGENSGRAPH_PATTERN_STATEMENT = "|^MATCH.*";
+	private static final String AGENSGRAPH_PATTERN_STATEMENT = "|.*RETURN.*";
 	
 	@Override
 	public QueryInfoDTO parser(String sql) {

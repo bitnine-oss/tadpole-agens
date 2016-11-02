@@ -25,15 +25,13 @@
  -->
 <select id="agensVertex" resultClass="com.hangum.tadpole.engine.query.dao.agens.AgensVertexDAO" parameterClass="java.lang.String">
 	select
-	    childlab.labname, childlab.relid,/* childlab.labowner, */childlab.labkind, inhrelid, inhparent, inhseqno
+	    labname, relid, pg_get_userbyid(c.relowner), labkind, inhrelid, inhparent, inhseqno
 	from 
-	    ag_label AS parentlab, 
-	    ag_label AS childlab, 
-	    pg_inherits AS inh 
-	where 
-	        childlab.oid = inh.inhrelid 
-	    AND parentlab.oid = inh.inhparent
-	    AND parentlab.labname = 'vertex'
+	    ag_label AS l LEFT JOIN pg_class AS c ON l.relid = c.oid,
+	    pg_inherits AS i
+	where
+				labkind='v'
+				AND l.relid = i.inhrelid;
 </select>
 
 <!-- 
@@ -41,15 +39,13 @@
  -->
 <select id="agensEdge" resultClass="com.hangum.tadpole.engine.query.dao.agens.AgensVertexDAO" parameterClass="java.lang.String">
 	select
-	    childlab.labname, childlab.relid, /*childlab.labowner, */childlab.labkind, inhrelid, inhparent, inhseqno
+	    labname, relid, pg_get_userbyid(c.relowner), labkind, inhrelid, inhparent, inhseqno
 	from 
-	    ag_label AS parentlab, 
-	    ag_label AS childlab, 
-	    pg_inherits AS inh 
-	where 
-	        childlab.oid = inh.inhrelid 
-	    AND parentlab.oid = inh.inhparent
-	    AND parentlab.labname = 'edge'
+	    ag_label AS l LEFT JOIN pg_class AS c ON l.relid = c.oid,
+	    pg_inherits AS i
+	where
+				labkind='e'
+				AND l.relid = i.inhrelid;
 </select>
 
 </sqlMap>
