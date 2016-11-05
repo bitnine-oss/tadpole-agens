@@ -17,6 +17,10 @@ public class Instance implements Serializable {
 	private String pg_version;
 
 	private long xlog_file_size;
+	private long count;
+	private long sum;
+	private long max;
+	private String max_time;
 
 	public Instance() {
 	}
@@ -91,7 +95,6 @@ public class Instance implements Serializable {
 		this.pg_version = pg_version;
 	}
 
-
 	/**
 	 * @return the xlog_file_size
 	 */
@@ -104,6 +107,62 @@ public class Instance implements Serializable {
 	 */
 	public void setXlog_file_size(long xlog_file_size) {
 		this.xlog_file_size = xlog_file_size;
+	}
+	
+	/**
+	 * @return the count
+	 */
+	public long getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(long count) {
+		this.count = count;
+	}
+
+	/**
+	 * @return the sum
+	 */
+	public long getSum() {
+		return sum;
+	}
+
+	/**
+	 * @param sum the sum to set
+	 */
+	public void setSum(long sum) {
+		this.sum = sum;
+	}
+
+	/**
+	 * @return the max
+	 */
+	public long getMax() {
+		return max;
+	}
+
+	/**
+	 * @param max the max to set
+	 */
+	public void setMax(long max) {
+		this.max = max;
+	}
+
+	/**
+	 * @return the max_time
+	 */
+	public String getMax_time() {
+		return max_time;
+	}
+
+	/**
+	 * @param max_time the max_time to set
+	 */
+	public void setMax_time(String max_time) {
+		this.max_time = max_time;
 	}
 
 	@Override
