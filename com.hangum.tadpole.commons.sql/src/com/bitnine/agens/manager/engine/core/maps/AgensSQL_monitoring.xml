@@ -12,14 +12,20 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="AgensManager_monistoring">
-   <!--  get instance -->
-   <select id="listInstance" resultClass="com.bitnine.agens.manager.engine.core.dao.domain.Instance">
-		SELECT
+    <!--  get instance -->
+   <!--  SELECT
 			instid, name, hostname, port, pg_version, xlog_file_size
 		FROM
 			statsrepo.instance
 		ORDER BY
 			instid ASC
+	-->
+   <select id="listInstance" resultClass="com.bitnine.agens.manager.engine.core.dao.domain.Instance">
+		SELECT i.instid, i.name, i.hostname, i.port, i.pg_version, 
+			count(s.snapid), sum(s.snapshot_increase_size)::numeric(1000), max(s.snapid), max(s.time)::timestamp(0) max_time 
+		FROM statsrepo.instance i LEFT JOIN statsrepo.snapshot s ON i.instid = s.instid 
+		GROUP BY i.instid, i.name, i.hostname, i.port 
+		ORDER BY i.instid	
 	</select>
 	
 	 <select id="maxSnapid" resultClass="int">
