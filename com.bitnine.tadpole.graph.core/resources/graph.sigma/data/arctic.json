@@ -1,0 +1,21 @@
+{"edges":[
+{"source":"262","target":"586","id":"6432","label":"Manager"},
+{"source":"262","target":"580","id":"357"},
+{"source":"541","target":"274","id":"4376"},
+{"source":"274","target":"1520","id":"5581"},
+{"source":"580","target":"541","id":"2763"},
+{"source":"1520","target":"1323","id":"6595"},
+{"source":"1520","target":"1098","id":"3431"}],
+"nodes":[
+{"label":"Sciences De La Terre","x":10, "y":0, "id":"262","color":"rgb(255,204,102)","size":12},
+{"label":"Champ","x":20, "y":0, "id":"586","color":"rgb(255,51,51)","size":12},
+{"label":"Chaîne Trophique","x":30, "y":0, "id":"580","color":"rgb(153,255,0)","size":12},
+{"label":"Kilometre Carre","x":40, "y":0, "id":"1015","color":"rgb(102,255,102)","size":12},
+{"label":"Catastrophe Naturelle","x":50, "y":0, "id":"25","color":"rgb(102,102,0)","size":12},
+{"label":"Planet In Peril","x":60, "y":0, "id":"1491","color":"rgb(102,255,102)","size":12},
+{"label":"Glacial Period","x":70, "y":0, "id":"1098","color":"rgb(153,255,255)","size":12},
+{"label":"Gaz Parfait","x":80, "y":0, "id":"541","color":"rgb(255,255,51)","size":12},
+{"label":"Sable Bitumineux","x":90, "y":0, "id":"1327","color":"rgb(0,153,0)","size":12},
+{"label":"Anwr Drilling","x":100, "y":0, "id":"274","color":"rgb(102,0,102)","size":12},
+{"label":"Science Center","x":110, "y":0, "id":"1323","color":"rgb(255,255,51)","size":12},
+{"label":"Polycristal","x":120, "y":0, "id":"1520","color":"rgb(255,255,51)","size":12}]}

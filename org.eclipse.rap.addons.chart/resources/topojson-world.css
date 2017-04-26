@@ -1,0 +1,60 @@
+/*******************************************************************************
+ * Copyright (c) 2016 EclipseSource and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    EclipseSource - initial API and implementation
+ ******************************************************************************/
+
+.graticule {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .1;
+  stroke-width: .5px;
+}
+
+.graticule.outline {
+  stroke: #333;
+  stroke-opacity: 1;
+  stroke-width: 1.5px;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+.country {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: .5px;
+  stroke-linejoin: round;
+}
+
+.country:hover {
+  stroke: #fff;
+  stroke-width: 1.5px;
+  opacity: 0.7;
+}
+
+.tooltip {
+  padding: 10px;
+  background-color: #201F1B;
+  background-image: none;
+  border: none;
+  border-radius: 1px;
+  font: 12px Verdana, "Lucida Sans", Arial, Helvetica, sans-serif;
+  color: #e0e0e0;
+  opacity: 0.9;
+  box-shadow: none;
+  text-align: center;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}

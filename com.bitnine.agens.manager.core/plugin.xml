@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.bitnine.angens.manager.core.editors.AgensManagerEditor"
+            default="false"
+            icon="resources/icons/agens_icons.png"
+            id="com.bitnine.angens.manager.core.editor.main"
+            name="Agens Manager">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.equinox.http.registry.resources">
+      <resource
+            alias="/resources/nvd3"
+            base-name="/resources/nvd3">
+      </resource>
+   </extension>
+
+</plugin>

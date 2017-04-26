@@ -1,0 +1,123 @@
+<!-- 
+	// basic source 
+	http://jsfiddle.net/LukaszWiktor/rcL0uot9/ 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="/resources/nvd3/d3.v3.min.js"></script>
+<script src="/resources/nvd3/jquery-1.9.1.min.js"></script>
+<script src="/resources/nvd3/jquery.mobile-1.4.2.min.js"></script>
+<script src="/resources/nvd3/nv.d3.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/resources/nvd3/jquery.mobile-1.4.2.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/nvd3/nv.d3.css">
+
+<style type="text/css">
+#chartCanvas {
+	background: #fefefe;
+	height: 300px;
+	width: 100%;
+	border: 1px solid #777;
+	border-radius: 8px;
+	box-shadow: 2px 2px 5px #888888;
+}
+</style>
+</head>
+
+<script type="text/javascript"> 
+var lineChart;
+var xlabel = _XAXIS_LABEL_;
+var xformat = _FORMAT_XAXIS_LABEL;
+
+nv.addGraph(function() {
+
+	lineChart = nv.models.lineChart().margin({
+		left : 100,
+		right : 50
+	}) //Adjust chart margins to give the x-axis some breathing room.
+	.useInteractiveGuideline(true) //We want nice looking tooltips and a guideline!
+	.transitionDuration(350) //how fast do you want the lines to transition?
+	.showLegend(true) //Show the legend, allowing users to turn on/off line series.
+	.showYAxis(true) //Show the y-axis
+	.showXAxis(true) //Show the x-axis
+	;
+	
+	try{
+	    var initData = JSON.parse('_TIMESERIESCHART_TEMPLATE'); 
+	    initData.forEach(function (d) {
+	    	 d.values.forEach(function(v){
+		         v.x = new Date(v.x); 
+	    	 });
+	     });
+	}catch(e){
+	}
+	
+	try{
+		lineChart.xAxis //Chart x-axis settings
+		.axisLabel(xlabel)
+		.tickValues(
+					initData[0].values.map(function(p) {
+						return p.x
+					}))
+		.tickFormat(function(d) {
+			return d3.time.format(xformat)(new Date(d))
+		});
+	}catch(e){
+	}
+	
+	/* Done setting the chart up? Time to render it!*/
+	d3.select('#chart svg') //Select the <svg> element you want to render the chart in.   
+	.datum(initData) //Populate the <svg> element with chart data...
+	.call(lineChart); //Finally, render the chart!
+	
+	lineChart.yAxis //Chart y-axis settings
+	.axisLabel(_YAXIS_LABEL_)
+	.tickFormat(_FORMAT_YAXIS_LABEL);
+
+	try {
+		//Update the chart when window resizes.
+		nv.utils.windowResize(function() {
+			lineChart.update()
+		});
+	} catch (e) {
+	}
+	
+	return lineChart;
+});
+
+function tdb_refresh(arg) {
+	var reportData = {};
+	try {
+	     reportData = JSON.parse(arg); 
+	     reportData.forEach(function (d) {
+	    	 d.values.forEach(function(v){
+		         v.x = new Date(v.x); 
+	    	 });
+	     });
+	     
+		lineChart.xAxis //Chart x-axis settings
+		.tickValues(reportData[0].values.map(function(p) {
+			return p.x
+		}));
+		
+		/* Done setting the chart up? Time to render it!*/
+		d3.select('#chart svg') //Select the <svg> element you want to render the chart in.   
+		.datum(reportData) //Populate the <svg> element with chart data...
+		.call(lineChart); //Finally, render the chart!
+	} catch (e) {
+	}
+};
+
+</script>
+
+<body scroll="no" style="overflow-x:hidden">
+	<div data-role="page" id="page1" style="overflow-x:hidden">
+		<div role="main" class="ui-content" style="overflow-x:hidden">
+			<div id="chart" style="overflow-x:hidden">
+				<svg id="chartCanvas"></svg>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

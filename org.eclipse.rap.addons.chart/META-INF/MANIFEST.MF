@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.rap.addons.chart
+Archiver-Version: Plexus Archiver
+Built-By: genie.rap
+Require-Bundle: org.eclipse.rap.rwt;bundle-version="[3.0.0,4.0.0)"
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: Eclipse.org - RAP Incubator
+Export-Package: org.eclipse.rap.addons.chart;version="0.1.0",org.eclip
+ se.rap.addons.chart.basic;version="0.1.0"
+Bundle-Name: Extensible Charts for RAP (Incubation)
+Bundle-Version: 0.1.0.20160506-0953
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_51
+
